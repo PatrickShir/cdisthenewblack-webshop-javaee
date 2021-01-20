@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <div class="header">
+        <h:graphicImage class="logo" library="images" name="logo.png"/>
+    </div>
+    <div class="userGreeting">
+        <div class="user">
+            <h:outputLabel styleClass="greet" value="Welcome #{adminController.userFullName}"/>
+            <h:form>
+                <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{customerController.logout}"/>
+            </h:form>
+        </div>
+    </div>
+
+    <h1>ITEM OVERVIEW</h1>
+    <h:dataTable styleClass="table" value="#{adminController.itemList}" var="item" cellpadding="10">
+        <h:column headerClass="customHeader">
+            <f:facet name="header">Title</f:facet>
+            <h:outputText value="#{item.record.title}"/>
+        </h:column>
+        <h:column headerClass="customHeader">
+            <f:facet name="header">Artist</f:facet>
+            <h:outputText value="#{item.record.artist}"/>
+        </h:column>
+        <h:column headerClass="customHeader">
+            <f:facet name="header">Quantity</f:facet>
+            <h:outputText value="#{item.formattedQuantity()}"/>
+        </h:column>
+        <h:column headerClass="customHeader">
+            <f:facet name="header">Price</f:facet>
+            <h:outputText value="#{item.totalPriceFormatted}"/>
+        </h:column>
+    </h:dataTable>
+
+    <h:form>
+        <h:commandButton styleClass="info-btn" value="RETURN TO ORDERS" action="adminOrderOverview"/>
+    </h:form>
+</h:body>
+</html>

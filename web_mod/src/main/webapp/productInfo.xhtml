@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <div class="header">
+        <h:graphicImage class="logo" library="images" name="logo.png"/>
+        <div class="header-btn">
+            <h:form>
+                <h:commandLink action="cart">
+                    <div class="cart-icon">
+                        <h:graphicImage styleClass="cart-img" library="images" name="cart.png"/>
+                        <div class="cart-qty" style="visibility: #{customerController.cartIconStatus}">#{customerController.cartLength}</div>
+                    </div>
+                </h:commandLink>
+            </h:form>
+        </div>
+    </div>
+    <div class="userGreeting">
+        <div class="user">
+            <h:outputLabel styleClass="greet" value="Welcome #{customerController.userFullName}">
+                <h:outputLabel value=" #{customerController.premium()}"></h:outputLabel>
+            </h:outputLabel>
+            <h:form>
+                <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{customerController.logout}"/>
+            </h:form>
+        </div>
+    </div>
+
+    <div class="product-info">
+        <h:graphicImage styleClass="info-img" library="images" name="#{shoppingController.showProduct().imgURL}"/>
+        <div class="info-description">
+            <div class="infotxt artist">#{shoppingController.showProduct().artist}</div>
+            <div class="infotxt title">#{shoppingController.showProduct().title}</div>
+            <div class="infotxt info-price">#{shoppingController.showProduct().priceFormatted} SEK</div>
+            <h:form styleClass="info-btn-form">
+                <h:commandButton styleClass="btn info-btn" value="Back" action="shop"/>
+                <h:commandButton styleClass="btn info-btn" value="Add to cart" action="#{customerController.addToCart(shoppingController.showProduct().id)}"/>
+            </h:form>
+        </div>
+    </div>
+</h:body>
+</html>

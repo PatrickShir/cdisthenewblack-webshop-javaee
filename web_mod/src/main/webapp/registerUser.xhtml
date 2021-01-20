@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<body>
+
+<h:graphicImage styleClass="logo" library="images" name="logo.png"/>
+
+<h:form styleClass="login-form">
+    <div class="login-info">
+        <h:outputLabel styleClass="login-label" value="Username"/><br/>
+        <h:inputText maxlength="20" value="#{loginController.username}" styleClass="login-input" required="true"/>
+    </div>
+    <div class="login-info">
+        <h:outputLabel styleClass="login-label" value="First name"/><br/>
+        <h:inputText maxlength="20" value="#{loginController.firstName}" styleClass="login-input" required="true"/>
+    </div>
+    <div class="login-info">
+        <h:outputLabel styleClass="login-label" value="Lastname"/><br/>
+        <h:inputText maxlength="20" value="#{loginController.lastName}"  styleClass="login-input" required="true"/>
+    </div>
+    <div class="login-info">
+        <h:outputLabel styleClass="login-label" value="Password"/><br/>
+        <h:inputSecret maxlength="20" value="#{loginController.password}" styleClass="login-input" required="true"/>
+    </div>
+    <h:commandButton styleClass="btn login-btn" value="Register" action="#{loginController.registerUser()}" />
+</h:form>
+
+<h:form styleClass="login-form">
+    <h:commandButton styleClass="btn login-btn" value="Back" action="login" />
+</h:form>
+</body>
+</html>

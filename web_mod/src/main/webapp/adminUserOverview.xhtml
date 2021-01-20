@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+<h:body>
+    <div class="header">
+        <h:graphicImage class="logo" library="images" name="logo.png"/>
+    </div>
+    <div class="userGreeting">
+        <div class="user">
+            <h:outputLabel styleClass="greet" value="Welcome #{adminController.userFullName}"/>
+            <h:form>
+                <h:commandButton styleClass="logout-btn btn " value="Logout" action="#{customerController.logout}"/>
+            </h:form>
+        </div>
+    </div>
+
+    <h1>CUSTOMER OVERVIEW</h1>
+    <h:form>
+        <h:dataTable styleClass="table" value="#{adminController.customerList}" var="customer" cellpadding="10">
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Username</f:facet>
+                <h:outputText value="#{customer.userName}"/>
+            </h:column>
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Firstname</f:facet>
+                <h:outputText value="#{customer.firstName}"/>
+            </h:column>
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Lastname</f:facet>
+                <h:outputText value="#{customer.lastName}"/>
+            </h:column>
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Spent</f:facet>
+                <h:outputText value="#{customer.formattedTotalSpent}"/>
+            </h:column>
+            <h:column headerClass="customHeader">
+                    <f:facet name="header">Role</f:facet>
+                <h:outputText value="#{customer.role}"/>
+            </h:column>
+            <h:column>
+                <h:commandButton styleClass="info-btn" value="VIEW" action="#{adminController.viewCustomerOrder(customer.id)}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+
+</h:body>
+</html>
